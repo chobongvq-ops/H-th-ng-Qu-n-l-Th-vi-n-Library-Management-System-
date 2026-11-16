@@ -15,20 +15,26 @@ class LibrarySystem:
         self.books = [] # Danh sách lưu trữ sách
 
     def add_book(self, book):
-        """
-        Nhiệm vụ của thành viên phụ trách: 
-        Viết logic thêm sách mới vào danh sách self.books
-        """
-        pass
+        # Kiểm tra mã sách đã tồn tại
+        for b in self.books:
+            if b.book_id == book.book_id:
+                print("Mã sách đã tồn tại!")
+                return False
 
+        # Thêm sách vào danh sách
+        self.books.append(book)
+        print(f"Đã thêm sách: {book.title}")
+        return True
     def display_books(self):
-        """Hiển thị danh sách sách có trong thư viện"""
         if not self.books:
             print("Thư viện hiện chưa có sách nào!")
-        for b in self.books:
-            print(f"ID: {b.book_id} | Tên: {b.title} | Tác giả: {b.author} | Số lượng: {b.quantity}")
+            return
 
-# Khởi chạy chương trình mẫu
-if __name__ == "__main__":
-    library = LibrarySystem()
-    print("=== HỆ THỐNG QUẢN LÝ THƯ VIỆN ĐÃ SẴN SÀNG ===")
+        print("\n===== DANH SÁCH SÁCH =====")
+
+        for b in self.books:
+            print(f"Mã sách: {b.book_id}")
+            print(f"Tên sách: {b.title}")
+            print(f"Tác giả: {b.author}")
+            print(f"Số lượng: {b.quantity}")
+            print("------------------------")
